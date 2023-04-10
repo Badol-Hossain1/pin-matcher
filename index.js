@@ -22,10 +22,18 @@ document.getElementById("generate-pin").addEventListener("click", function () {
 
 document.getElementById("calculetor").addEventListener("click", function (e) {
   const number = e.target.innerText;
+  const typeNumber = document.getElementById("typedNumber");
+
   if (isNaN(number)) {
- 
+    if (number === "C") {
+      typeNumber.value = "";
+    } else if (number === "<") {
+      const convert = typeNumber.value.split("");
+      convert.pop();
+      const remening = convert.join("");
+      typeNumber.value = remening;
+    }
   } else {
-    const typeNumber = document.getElementById("typedNumber");
     const newTypedNum = typeNumber.value;
     const all = newTypedNum + number;
     typeNumber.value = all;
@@ -33,17 +41,16 @@ document.getElementById("calculetor").addEventListener("click", function (e) {
   console.log();
 });
 
-document.getElementById('submit-btn').addEventListener('click',function(){
-    const typeNumber = document.getElementById("typedNumber");
-   const value = typeNumber.value
+document.getElementById("submit-btn").addEventListener("click", function () {
+  const typeNumber = document.getElementById("typedNumber");
+  const value = typeNumber.value;
   const generated = document.getElementById("generateInput");
-  const values = generated.value
+  const values = generated.value;
 
-  if(value === values){
-  const success = document.getElementById('success')
-  success.style.display = 'block'
-  }else{
-     document.getElementById('wrong').style.display = 'block'
+  if (value === values) {
+    const success = document.getElementById("success");
+    success.style.display = "block";
+  } else {
+    document.getElementById("wrong").style.display = "block";
   }
-
-})
+});
